@@ -56,19 +56,21 @@ class PdfReport:
         fl2_pay = str(round(fl2_pay, 2))
 
         # Add a title
-        pdf.set_font(family='Arial', size=24, style='B')
-        pdf.cell(w=0, h=80, txt='Flatmates Bill', border=1, align='C', ln=1)
+        pdf.set_font(family='Arial', size=28, style='B')
+        pdf.cell(w=0, h=80, txt='Flatmates Bill', border=0, align='C', ln=1)
 
         # Add Period label and its value
-        pdf.cell(w=150, h=40, txt='Period', border=1, align='C')
-        pdf.cell(w=0, h=40, txt=bill.period, border=1, align='C', ln=1)
+        pdf.set_font(family='Arial', size = 18, style='BI')
+        pdf.cell(w=150, h=40, txt='Period', border=0, align='C')
+        pdf.cell(w=0, h=40, txt=bill.period, border=0, align='C', ln=1)
 
         # Add flatmates' names and how much they need to pay
-        pdf.cell(w=150, h=40, txt=flatmate1.name, border=1, align='C')
-        pdf.cell(w=0, h=40, txt=fl1_pay, border=1, align='C', ln=1)
+        pdf.set_font(family='Arial', size = 14, style='I')
+        pdf.cell(w=150, h=25, txt=flatmate1.name, border=0, align='C')
+        pdf.cell(w=0, h=25, txt=fl1_pay, border=0, align='C', ln=1)
 
-        pdf.cell(w=150, h=40, txt=flatmate2.name, border=1, align='C')
-        pdf.cell(w=0, h=40, txt=fl2_pay, border=1, align='C', ln=1)
+        pdf.cell(w=150, h=25, txt=flatmate2.name, border=0, align='C')
+        pdf.cell(w=0, h=25, txt=fl2_pay, border=0, align='C', ln=1)
 
         print('New PDF file', self.filename, 'was succesfully generated :)')
         pdf.output(self.filename)
