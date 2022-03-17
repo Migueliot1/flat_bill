@@ -27,7 +27,7 @@ class Flatmate:
         needs to pay for his share'''
 
         # Calculate weight of payment by finding coefficient
-        weight = self.days_in_house/ (self.days_in_house + other_flatmate)
+        weight = self.days_in_house/ (self.days_in_house + other_flatmate.days_in_house)
         return bill.amount * weight 
 
 
