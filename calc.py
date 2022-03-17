@@ -48,6 +48,13 @@ class PdfReport:
         pdf = FPDF(orientation='P', unit='pt', format='A4')
         pdf.add_page()
 
+        # Calculate how much each flatmate needs to pay
+        # and make these values ready to be inserted in pdf
+        fl1_pay = flatmate1.pays(bill, flatmate2)
+        fl1_pay = str(round(fl1_pay, 2))
+        fl2_pay = flatmate2.pays(bill, flatmate1)
+        fl2_pay = str(round(fl2_pay, 2))
+
         # Add a title
         pdf.set_font(family='Arial', size=24, style='B')
         pdf.cell(w=0, h=80, txt='Flatmates Bill', border=1, align='C', ln=1)
@@ -57,13 +64,11 @@ class PdfReport:
         pdf.cell(w=0, h=40, txt=bill.period, border=1, align='C', ln=1)
 
         # Add flatmates' names and how much they need to pay
-        fl1_pay = flatmate1.pays(bill, flatmate2)
         pdf.cell(w=150, h=40, txt=flatmate1.name, border=1, align='C')
-        pdf.cell(w=0, h=40, txt=str(fl1_pay), border=1, align='C', ln=1)
+        pdf.cell(w=0, h=40, txt=fl1_pay, border=1, align='C', ln=1)
 
-        fl2_pay = flatmate2.pays(bill, flatmate1)
         pdf.cell(w=150, h=40, txt=flatmate2.name, border=1, align='C')
-        pdf.cell(w=0, h=40, txt=str(fl2_pay), border=1, align='C', ln=1)
+        pdf.cell(w=0, h=40, txt=fl2_pay, border=1, align='C', ln=1)
 
         print('New PDF file', self.filename, 'was succesfully generated :)')
         pdf.output(self.filename)
