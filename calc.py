@@ -22,6 +22,14 @@ class Flatmate:
         self.name = name
         self.days_in_house = days_in_house
 
+    def pays(self, bill, other_flatmate):
+        '''Calculate how much this flatmate
+        needs to pay for his share'''
+
+        # Calculate weight of payment by finding coefficient
+        weight = self.days_in_house/ (self.days_in_house + other_flatmate)
+        return bill.amount * weight 
+
 
 class PdfReport:
     '''Represents a pdf report file which would be generated 
@@ -37,3 +45,15 @@ class PdfReport:
         and flatmates'''
 
         pass
+
+
+# DEBUG
+bill = Bill(120, 'March 2022')
+batman = Flatmate('Batman', 20)
+thanos = Flatmate('Thanos', 25)
+
+bat_pay = batman.pays(bill, thanos)
+than_pay = thanos.pays(bill, batman)
+
+print('Batman should pay:', bat_pay)
+print('Thanos should pay:', than_pay)
