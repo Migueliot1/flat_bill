@@ -54,15 +54,19 @@ class PdfReport:
 
         # Add Period label and its value
         pdf.cell(w=150, h=40, txt='Period', border=1, align='C')
-        pdf.cell(w=0, h=40, txt='March 2022', border=1, align='C', ln=1)
+        pdf.cell(w=0, h=40, txt=bill.period, border=1, align='C', ln=1)
 
         # Add flatmates' names and how much they need to pay
-        pdf.cell(w=150, h=40, txt='John', border=1, align='C')
-        pdf.cell(w=0, h=40, txt='66.6', border=1, align='C', ln=1)
-        pdf.cell(w=150, h=40, txt='Marry', border=1, align='C')
-        pdf.cell(w=0, h=40, txt='53.4', border=1, align='C', ln=1)
+        fl1_pay = flatmate1.pays(bill, flatmate2)
+        pdf.cell(w=150, h=40, txt=flatmate1.name, border=1, align='C')
+        pdf.cell(w=0, h=40, txt=str(fl1_pay), border=1, align='C', ln=1)
 
-        pdf.output('bill.pdf')
+        fl2_pay = flatmate2.pays(bill, flatmate1)
+        pdf.cell(w=150, h=40, txt=flatmate2.name, border=1, align='C')
+        pdf.cell(w=0, h=40, txt=str(fl2_pay), border=1, align='C', ln=1)
+
+        print('New PDF file', self.filename, 'was succesfully generated :)')
+        pdf.output(self.filename)
 
 
 
@@ -71,8 +75,5 @@ bill = Bill(120, 'March 2022')
 batman = Flatmate('Batman', 20)
 thanos = Flatmate('Thanos', 25)
 
-bat_pay = batman.pays(bill, thanos)
-than_pay = thanos.pays(bill, batman)
-
-print('Batman should pay:', bat_pay)
-print('Thanos should pay:', than_pay)
+pdf1 = PdfReport('bill.pdf')
+pdf1.generate(bill, batman, thanos)
