@@ -74,13 +74,3 @@ class PdfReport:
 
         print('New PDF file', self.filename, 'was succesfully generated :)')
         pdf.output(self.filename)
-
-
-
-# DEBUG
-bill = Bill(120, 'March 2022')
-batman = Flatmate('Batman', 20)
-thanos = Flatmate('Thanos', 25)
-
-pdf1 = PdfReport('bill.pdf')
-pdf1.generate(bill, batman, thanos)
