@@ -13,7 +13,7 @@ except:
 
 user_period = input("Enter bill's period (e.g. December 2021): ")
 
-fl1_name = input("Enter 1st flatmater's name: ")
+fl1_name = input("Enter 1st flatmate's name: ")
 fl2_name = input("Enter 2nd flatmate's name: ")
 
 try:
