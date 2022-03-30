@@ -1,11 +1,26 @@
-class HomePage:
+from flask.views import MethodView
+from wtforms import Form
+from flask import Flask
+
+app = Flask(__name__)
+
+class HomePage(MethodView):
+    
+    def get(self):
+        return 'Hello, I am home page'
+
+class BillFormPage(MethodView):
+    
+    def get(self):
+        return 'Bill form page it is'
+
+class ResutlsPage(MethodView):
     pass
 
-class BillFormPage:
+class BillForm(Form):
     pass
 
-class ResutlsPage:
-    pass
+app.add_url_rule('/', view_func=HomePage.as_view('home_page'))
+app.add_url_rule('/bill', view_func=BillFormPage.as_view('bill_form_page'))
 
-class BillForm:
-    pass
+app.run()
