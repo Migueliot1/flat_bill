@@ -1,0 +1,13 @@
+h2 {
+    color: darkgrey;
+    font-family: "Helvetica", serif;
+    text-align: center;
+    font-size: 50px;
+}
+
+body {
+    background-color: ghostwhite;
+    font-family: "Helvetica", serif;
+    font-size: 30px;
+    padding: 25px;
+}
